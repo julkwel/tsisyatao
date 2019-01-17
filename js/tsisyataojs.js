@@ -88,6 +88,7 @@ $(document).ready(function () {
                                             text: 'Okay',
                                             action: function () {
                                                 window.top.close();
+                                                close();
                                             }
                                         }
                                     }
@@ -109,6 +110,7 @@ $(document).ready(function () {
                     keys: ['enter', 'shift'],
                     action: function () {
                         window.top.close();
+                        close();
                     }
                 }
             },
