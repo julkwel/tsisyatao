@@ -3,6 +3,11 @@ function close_window() {
         close();
     }
 }
+function windowClose() {
+    window.open('','_parent','');
+    window.close();
+}
+
 
 $(document).ready(function () {
     document.getElementById('data').innerHTML = `
@@ -87,8 +92,7 @@ $(document).ready(function () {
                                         confirm: {
                                             text: 'Okay',
                                             action: function () {
-                                                window.top.close();
-                                                close();
+                                                windowClose();
                                             }
                                         }
                                     }
@@ -109,8 +113,7 @@ $(document).ready(function () {
                     btnClass: 'btn-floating waves-effect waves-light blue',
                     keys: ['enter', 'shift'],
                     action: function () {
-                        window.top.close();
-                        close();
+                        windowClose();
                     }
                 }
             },
