@@ -5,7 +5,7 @@ function close_window() {
 }
 
 $(document).ready(function () {
-    document.getElementById('1').innerHTML = `
+    document.getElementById('data').innerHTML = `
     <h1 class="ml8">
               <span class="letters-container">
                   <a class="btn-floating btn-large waves-effect waves-light red" style="margin-right: 10px"
@@ -37,17 +37,17 @@ $(document).ready(function () {
                     keys: ['enter', 'shift'],
                     action: function () {
                         document.body.style.backgroundColor = "#1abc9c";
-                        document.getElementById('1').innerHTML = `<h1 class="ml11">
+                        document.getElementById('data').innerHTML = `<h1 class="ml11">
                                                               <span class="text-wrapper">
                                                                 <span class="line line1"></span>
-                                                                <span class="letters">Kaiza ry akama.</span>
+                                                                <span class="letters">Kaiza ry akama !</span>
                                                               </span>
                                                             </h1>`;
                         $('.ml11 .letters').each(function () {
-                            $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+                            $(this).html($(this).text().replace(/([^]*|\w)/g, "<span class='letter'>$&</span>"));
                         });
 
-                        anime.timeline({loop: true})
+                        anime.timeline({loop: false})
                             .add({
                                 targets: '.ml11 .line',
                                 scaleY: [0, 1],
@@ -69,14 +69,38 @@ $(document).ready(function () {
                             offset: '-=775',
                             delay: function (el, i) {
                                 return 34 * (i + 1)
+                            },
+                            complete: function() {
+                                document.getElementById('data').innerHTML = `
+                                                            <h1 class="ml11">
+                                                              <span class="text-wrapper">
+                                                                <span class="line line1"></span>
+                                                                <span class="letters">Ndao hiasa amin'izay ! </span>
+                                                              </span>
+                                                            </h1>`;
+                                $.confirm({
+                                    title: 'MAZOTOA E !',
+                                    draggable: true,
+                                    theme: 'supervan',
+                                    content: 'Mazotoa e!',
+                                    buttons: {
+                                        confirm: {
+                                            text: 'Okay',
+                                            action: function () {
+                                                window.top.close();
+                                            }
+                                        }
+                                    }
+                                })
                             }
                         }).add({
                             targets: '.ml11',
                             opacity: 0,
                             duration: 1000,
                             easing: "easeOutExpo",
-                            delay: 1000
+                            delay: 1000,
                         });
+
                     }
                 },
                 cancel: {
